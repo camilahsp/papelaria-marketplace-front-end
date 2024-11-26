@@ -48,7 +48,6 @@ function App() {
         <nav className="navigation">
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/login">Login</Link></li>
             <li><Link to="/usuarios">Usuários</Link></li>
           </ul>
         </nav>
@@ -66,7 +65,6 @@ function App() {
       <div className="content-container">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/usuarios" element={<UsuariosPage usuarios={usuarios} />} />
           <Route path="/cadastro" element={<CadastroPage />} />
           <Route path="/cadastro-produto" element={<CadastroProdutoPage />} />
@@ -84,35 +82,6 @@ function HomePage() {
     </div>
   );
 }
-
-
-function LoginPage() {
-  const navigate = useNavigate();
-
-
-  const handleLogin = () => {
-    navigate('/cadastro');
-  };
-
-
-  return (
-    <div className="login-container">
-      <h1>Login</h1>
-      <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" required />
-        </div>
-        <div>
-          <label htmlFor="senha">Senha:</label>
-          <input type="password" id="senha" required />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
-}
-
 
 function CadastroPage() {
   const [nome, setNome] = useState('');
