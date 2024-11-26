@@ -1,42 +1,301 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Corpo principal */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f9; /* fundo claro */
+  color: #333;
+  line-height: 1.6;
+}
+
+
+/* Contêiner do app para incluir o cabeçalho fixo e o conteúdo */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+
+/* Cabeçalho fixo */
+.site-header {
+  background-color: #fff;
+  color: #333;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Navegação do cabeçalho */
+.site-header nav {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.site-header nav ul {
+  list-style-type: none;
+  display: inline-flex;
+  gap: 25px;
+  padding: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.site-header nav ul li {
+  display: inline;
+}
+
+
+.site-header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+
+.site-header nav ul li a:hover {
+  color: #d4a5a5;
+}
+
+
+/* Botão de cadastro fixado no cabeçalho */
+.cadastro-btn {
+  padding: 10px 30px;
+  background-color: #d4a5a5;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  margin-right: 20px;
+}
+
+
+.cadastro-btn:hover {
+  background-color: #b88b8b;
+}
+
+
+/* Conteúdo abaixo do cabeçalho fixo */
+.content-container {
+  margin-top: 80px; /* Espaço para o cabeçalho fixo */
+  padding: 20px;
+}
+
+
+/* Estilos para a página inicial */
+.home-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+/* Estilos para o formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+input {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  background-color: #fafafa;
+}
+
+
+input:focus {
+  border-color: #d4a5a5;
+  outline: none;
+}
+
+
+button[type="submit"] {
+  padding: 12px;
+  background-color: #d4a5a5;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+
+button[type="submit"]:hover {
+  background-color: #b88b8b;
+}
+
+
+/* Estilos para a página de usuários */
+.usuarios-container {
+  margin-top: 50px;
+}
+
+
+.usuarios-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.usuario-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.usuario-item h2 {
+  font-size: 1.3rem;
+  color: #333;
+}
+
+
+.usuario-item p {
+  color: #555;
+}
+
+
+/* Estilos para o formulário de cadastro de produto (livro) */
+.cadastro-produto-container {
+  background-color: white;
+  padding: 20px;
+  max-width: 600px;
+  margin: 50px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.cadastro-produto-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0044cc;
+}
+
+
+.cadastro-produto-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+.cadastro-produto-container label {
+  font-weight: bold;
+}
+
+
+.cadastro-produto-container input,
+.cadastro-produto-container textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.cadastro-produto-container button {
+  padding: 12px;
+  background-color: #d4a5a5; /* Cor igual ao botão de cadastro de usuário */
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+
+.cadastro-produto-container button:hover {
+  background-color: #b88b8b;
+}
+
+
+/* Estilos para imagens e descrição de livros */
+.input-imagem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.input-imagem input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+}
+
+
+.input-imagem input[type="file"] {
+  padding: 5px;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  to {
-    transform: rotate(360deg);
+
+
+  .site-header nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .cadastro-container, .cadastro-produto-container {
+    width: 90%;
+  }
+
+
+  .home-container {
+    margin-top: 80px;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
-.card {
-  padding: 2em;
-}
 
-.read-the-docs {
-  color: #888;
-}

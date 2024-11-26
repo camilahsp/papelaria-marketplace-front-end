@@ -1,217 +1,343 @@
-/* 
+import { useEffect, useState } from 'react';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import './App.css';
 
-import { useEffect, useState } from 'react'
-import './App.css'
-// Tipo para produtos
-type LivroType = {
-  id: number,
-  titulo: string,
-  autor: string,
-  descricao: string,
-  genero: string,
-  dataLancamento: string,
-  editora: string,
-  numeroPaginas: string,
-  estoque: string,
-  preco: string,
-  imagemLivro: string
-}
 
-// Tipo para usuários
 type UsuarioType = {
-  id: number,
-  nome: string,
-  email: string,
-  fotoPerfil: string,
-  enderecoEntrega: string,
-  dataCriacaoConta: string
-}
+  id: number;
+  nome: string;
+  email: string;
+  enderecoEntrega: string;
+};
+
+
+type ProdutoType = {
+  id: number;
+  titulo: string;
+  autor: string;
+  numeroDePaginas: number;
+  editora: string;
+  imagem: string;
+  descricao: string;
+  genero: string;
+  preco: number;
+};
+
 
 function App() {
-  const [livros, setLivros] = useState<LivroType[]>([])
-  const [usuarios, setUsuarios] = useState<UsuarioType[]>([])
+  const [usuarios, setUsuarios] = useState<UsuarioType[]>([]);
+  const [produtos, setProdutos] = useState<ProdutoType[]>([]);
+  const navigate = useNavigate();
 
-  // useEffect para carregar produtos e usuários
+
   useEffect(() => {
-    // Buscar os produtos
-    fetch("http://localhost:8000/livros")
-      .then(resposta => resposta.json())
-      .then(dados => setLivros(dados))
+    fetch('http://localhost:8000/usuarios')
+      .then((resposta) => resposta.json())
+      .then((dados) => setUsuarios(dados));
 
-    // Buscar os usuários
-    fetch("https://one022a-marketplace-e90o.onrender.com/usuarios")
-      .then(resposta => resposta.json())
-      .then(dados => setUsuarios(dados))
-  }, [])
+
+    fetch('http://localhost:8000/produtos')
+      .then((resposta) => resposta.json())
+      .then((dados) => setProdutos(dados));
+  }, []);
+
 
   return (
-    <>
-
-
-      <header className="site-header">
-
-
-        <nav className="navigation">
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#produtos">Produtos</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#contato">Contato</a></li>
-          </ul>
-        </nav>
-
-        <div className="header-actions">
-          <button className="login-button">Login</button>
-        </div>
-      </header>
-      {// Listagem de Produtos }
-      <div className="livros-container">
-        <h1 className='titulo-livro'>Produtos</h1>
-        <div className="livros-list">
-          {
-            livros.map(livro => (
-              <div key={livro.id} className="livro-item">
-                <h3 className="livro-nome">{livro.titulo}</h3> {// Use h3 para o nome do produto }
-                <div className='container-imagem'>
-                  <img src={livro.imagemLivro} alt="Imagem do produto" />
-                </div>
-                <p className="livro-preco">{livro.preco}</p>
-                <p className="livro-descricao">{livro.descricao}</p>
-                <button className="botao-comprar">Comprar</button>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-
-      {// Listagem de Usuários }
-      <div className="usuarios-container">
-        <h1 className='titulo-usuario'>Usuários</h1>
-        <div className="usuarios-list"> {// Adicionando wrapper }
-          {
-            usuarios.map(usuario => (
-              <div key={usuario.id} className="usuario-item">
-                <h1 className="usuario-nome">{usuario.nome}</h1>
-                <p>Email: {usuario.email}</p>
-                <p>Criado em: {new Date(usuario.dataCriacaoConta).toLocaleDateString()}</p>
-              </div>
-            ))
-          }
-        </div> {//Fechando a div aqui }
-      </div>
-    </>
-  )
-}
-
-export default App
-
-*/
-
-// pedi p chat arrumar e ele deu isso
-
-import { useEffect, useState } from 'react'
-import './App.css'
-
-// Tipo para livros
-type LivroType = {
-  id: number,
-  titulo: string,
-  autor: string,
-  descricao: string,
-  genero: string,
-  dataLancamento: string,
-  editora: string,
-  numeroPaginas: string,
-  estoque: string,
-  preco: string,
-  imagemLivro: string
-}
-
-// Tipo para usuários
-type UsuarioType = {
-  id: number,
-  nome: string,
-  email: string,
-  fotoPerfil: string,
-  enderecoEntrega: string,
-  dataCriacaoConta: string
-}
-
-function App() {
-  const [livros, setLivros] = useState<LivroType[]>([])
-  const [usuarios, setUsuarios] = useState<UsuarioType[]>([])
-
-  // useEffect para carregar livros e usuários
-  useEffect(() => {
-    // Buscar os livros
-    fetch("http://localhost:8000/livros")
-      .then(resposta => resposta.json())
-      .then(dados => setLivros(dados))
-
-    // Buscar os usuários
-    fetch("https://one022a-marketplace-e90o.onrender.com/usuarios")
-      .then(resposta => resposta.json())
-      .then(dados => setUsuarios(dados))
-  }, [])
-
-  return (
-    <>
+    <div className="app-container">
       <header className="site-header">
         <nav className="navigation">
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#livros">Livros</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/usuarios">Usuários</Link></li>
           </ul>
         </nav>
-
-        <div className="header-actions">
-          <button className="login-button">Login</button>
+        <div className="button-container">
+          <Link to="/cadastro">
+            <button className="cadastro-btn">Cadastrar Usuário</button>
+          </Link>
+          <Link to="/cadastro-produto">
+            <button className="cadastro-produto-btn">Cadastrar Produto</button>
+          </Link>
         </div>
       </header>
 
-      {/* Listagem de Livros */}
-      <div className="livros-container">
-        <h1 className="titulo-livro">Livros</h1>
-        <div className="livros-list">
-          {
-            livros.map(livro => (
-              <div key={livro.id} className="livro-item">
-                <h3 className="livro-titulo">{livro.titulo}</h3>
-                <div className="container-imagem">
-                  <img src={livro.imagemLivro} alt={`Capa do livro ${livro.titulo}`} />
-                </div>
-                <p className="livro-preco">{livro.preco}</p>
-                <p className="livro-descricao">{livro.descricao}</p>
-                <button className="botao-comprar">Comprar</button>
-              </div>
-            ))
-          }
-        </div>
-      </div>
 
-      {/* Listagem de Usuários */}
-      <div className="usuarios-container">
-        <h1 className="titulo-usuario">Usuários</h1>
-        <div className="usuarios-list">
-          {
-            usuarios.map(usuario => (
-              <div key={usuario.id} className="usuario-item">
-                <h2 className="usuario-nome">{usuario.nome}</h2>
-                <p>Email: {usuario.email}</p>
-                <p>Criado em: {new Date(usuario.dataCriacaoConta).toLocaleDateString()}</p>
-                <p>Endereço de entrega: {usuario.enderecoEntrega}</p>
-                <div className="usuario-foto">
-                  {usuario.fotoPerfil && <img src={usuario.fotoPerfil} alt={`${usuario.nome} - Foto de perfil`} />}
-                </div>
-              </div>
-            ))
-          }
-        </div>
+      <div className="content-container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/usuarios" element={<UsuariosPage usuarios={usuarios} />} />
+          <Route path="/cadastro" element={<CadastroPage />} />
+          <Route path="/cadastro-produto" element={<CadastroProdutoPage />} />
+        </Routes>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+
+function HomePage() {
+  return (
+    <div className="home-container">
+      {/* Página inicial vazia */}
+    </div>
+  );
+}
+
+
+function LoginPage() {
+  const navigate = useNavigate();
+
+
+  const handleLogin = () => {
+    navigate('/cadastro');
+  };
+
+
+  return (
+    <div className="login-container">
+      <h1>Login</h1>
+      <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" required />
+        </div>
+        <div>
+          <label htmlFor="senha">Senha:</label>
+          <input type="password" id="senha" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+}
+
+
+function CadastroPage() {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const navigate = useNavigate();
+
+
+  const handleCadastro = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+
+    const usuario = { nome, email, enderecoEntrega: endereco };
+
+
+    // Envia os dados do usuário para o backend (POST /usuarios)
+    const response = await fetch('http://localhost:8000/usuarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(usuario),
+    });
+
+
+    if (response.ok) {
+      alert('Usuário cadastrado com sucesso!');
+      navigate('/usuarios'); // Redireciona para a página de usuários
+    } else {
+      alert('Erro ao cadastrar usuário');
+    }
+  };
+
+
+  return (
+    <div className="cadastro-container">
+      <h1>Cadastro de Usuário</h1>
+      <form onSubmit={handleCadastro}>
+        <div>
+          <label htmlFor="nome">Nome:</label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="endereco">Endereço:</label>
+          <input
+            type="text"
+            id="endereco"
+            name="endereco"
+            value={endereco}
+            onChange={(e) => setEndereco(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+  );
+}
+
+
+function CadastroProdutoPage() {
+  const [titulo, setTitulo] = useState('');
+  const [autor, setAutor] = useState('');
+  const [numeroDePaginas, setNumeroDePaginas] = useState(0);
+  const [editora, setEditora] = useState('');
+  const [imagem, setImagem] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [genero, setGenero] = useState('');
+  const [preco, setPreco] = useState(0);
+  const navigate = useNavigate();
+
+
+  const handleCadastroProduto = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+
+    const produto = { titulo, autor, numeroDePaginas, editora, imagem, descricao, genero, preco };
+
+
+    const response = await fetch('http://localhost:8000/produtos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(produto),
+    });
+
+
+    if (response.ok) {
+      alert('Produto cadastrado com sucesso!');
+      navigate('/');
+    } else {
+      alert('Erro ao cadastrar produto');
+    }
+  };
+
+
+  return (
+    <div className="cadastro-produto-container">
+      <h1>Cadastro de Produto (Livro)</h1>
+      <form onSubmit={handleCadastroProduto}>
+        <div>
+          <label htmlFor="titulo">Título:</label>
+          <input
+            type="text"
+            id="titulo"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="autor">Autor:</label>
+          <input
+            type="text"
+            id="autor"
+            value={autor}
+            onChange={(e) => setAutor(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="numeroDePaginas">Número de Páginas:</label>
+          <input
+            type="number"
+            id="numeroDePaginas"
+            value={numeroDePaginas}
+            onChange={(e) => setNumeroDePaginas(Number(e.target.value))}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="editora">Editora:</label>
+          <input
+            type="text"
+            id="editora"
+            value={editora}
+            onChange={(e) => setEditora(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="imagem">Imagem do Livro (URL):</label>
+          <input
+            type="text"
+            id="imagem"
+            value={imagem}
+            onChange={(e) => setImagem(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="descricao">Descrição:</label>
+          <textarea
+            id="descricao"
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="genero">Gênero:</label>
+          <input
+            type="text"
+            id="genero"
+            value={genero}
+            onChange={(e) => setGenero(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="preco">Preço:</label>
+          <input
+            type="number"
+            id="preco"
+            value={preco}
+            onChange={(e) => setPreco(Number(e.target.value))}
+            required
+          />
+        </div>
+        <button type="submit">Cadastrar Produto</button>
+      </form>
+    </div>
+  );
+}
+
+
+function UsuariosPage({ usuarios }: { usuarios: UsuarioType[] }) {
+  return (
+    <div className="usuarios-container">
+      <h1>Usuários Cadastrados</h1>
+      <div className="usuarios-list">
+        {usuarios.length > 0 ? (
+          usuarios.map((usuario) => (
+            <div key={usuario.id} className="usuario-item">
+              <h2>{usuario.nome}</h2>
+              <p>Email: {usuario.email}</p>
+              <p>Endereço de Entrega: {usuario.enderecoEntrega}</p>
+            </div>
+          ))
+        ) : (
+          <p>Não há usuários cadastrados.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+export default App;
