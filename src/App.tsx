@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 
-
 type UsuarioType = {
   id: number;
   nome: string;
   email: string;
   enderecoEntrega: string;
 };
-
 
 type ProdutoType = {
   id: number;
@@ -23,24 +21,20 @@ type ProdutoType = {
   preco: number;
 };
 
-
 function App() {
   const [usuarios, setUsuarios] = useState<UsuarioType[]>([]);
   const [produtos, setProdutos] = useState<ProdutoType[]>([]);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     fetch('http://localhost:8000/usuarios')
       .then((resposta) => resposta.json())
       .then((dados) => setUsuarios(dados));
 
-
     fetch('http://localhost:8000/produtos')
       .then((resposta) => resposta.json())
       .then((dados) => setProdutos(dados));
   }, []);
-
 
   return (
     <div className="app-container">
@@ -61,11 +55,10 @@ function App() {
         </div>
       </header>
 
-
       <div className="content-container">
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/usuarios" element={<UsuariosPage usuarios={usuarios} />} />
+          <Route path="/" element={<HomePage produtos={produtos} />} /> {/* Passando a prop produtos */}
+         <Route path="/usuarios" element={<UsuariosPage usuarios={usuarios} />} />
           <Route path="/cadastro" element={<CadastroPage />} />
           <Route path="/cadastro-produto" element={<CadastroProdutoPage />} />
         </Routes>
@@ -74,14 +67,31 @@ function App() {
   );
 }
 
-
-function HomePage() {
+function HomePage({ produtos }: { produtos: ProdutoType[] }) {
   return (
     <div className="home-container">
-      {/* Página inicial vazia */}
+      <h1>Produtos</h1>
+      <div className="produtos-list">
+        {produtos.length > 0 ? (
+          produtos.map((produto) => (
+            <div key={produto.id} className="produto-item">
+              <img src={produto.imagem} alt={produto.titulo} className="produto-imagem" />
+              <h2>{produto.titulo}</h2>
+              <p><strong>Autor:</strong> {produto.autor}</p>
+              <p>
+                <strong>Preço:</strong> R${Number(produto.preco).toFixed(2)}
+              </p>
+              <p><strong>Gênero:</strong> {produto.genero}</p>
+            </div>
+          ))
+        ) : (
+          <p>Não há produtos cadastrados.</p>
+        )}
+      </div>
     </div>
   );
 }
+
 
 function CadastroPage() {
   const [nome, setNome] = useState('');
@@ -89,15 +99,11 @@ function CadastroPage() {
   const [endereco, setEndereco] = useState('');
   const navigate = useNavigate();
 
-
   const handleCadastro = async (e: React.FormEvent) => {
     e.preventDefault();
 
-
     const usuario = { nome, email, enderecoEntrega: endereco };
 
-
-    // Envia os dados do usuário para o backend (POST /usuarios)
     const response = await fetch('http://localhost:8000/usuarios', {
       method: 'POST',
       headers: {
@@ -106,15 +112,13 @@ function CadastroPage() {
       body: JSON.stringify(usuario),
     });
 
-
     if (response.ok) {
       alert('Usuário cadastrado com sucesso!');
-      navigate('/usuarios'); // Redireciona para a página de usuários
+      navigate('/usuarios');
     } else {
       alert('Erro ao cadastrar usuário');
     }
   };
-
 
   return (
     <div className="cadastro-container">
@@ -159,7 +163,6 @@ function CadastroPage() {
   );
 }
 
-
 function CadastroProdutoPage() {
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
@@ -171,13 +174,10 @@ function CadastroProdutoPage() {
   const [preco, setPreco] = useState(0);
   const navigate = useNavigate();
 
-
   const handleCadastroProduto = async (e: React.FormEvent) => {
     e.preventDefault();
 
-
     const produto = { titulo, autor, numeroDePaginas, editora, imagem, descricao, genero, preco };
-
 
     const response = await fetch('http://localhost:8000/produtos', {
       method: 'POST',
@@ -187,7 +187,6 @@ function CadastroProdutoPage() {
       body: JSON.stringify(produto),
     });
 
-
     if (response.ok) {
       alert('Produto cadastrado com sucesso!');
       navigate('/');
@@ -195,7 +194,6 @@ function CadastroProdutoPage() {
       alert('Erro ao cadastrar produto');
     }
   };
-
 
   return (
     <div className="cadastro-produto-container">
@@ -286,7 +284,6 @@ function CadastroProdutoPage() {
   );
 }
 
-
 function UsuariosPage({ usuarios }: { usuarios: UsuarioType[] }) {
   return (
     <div className="usuarios-container">
@@ -297,7 +294,7 @@ function UsuariosPage({ usuarios }: { usuarios: UsuarioType[] }) {
             <div key={usuario.id} className="usuario-item">
               <h2>{usuario.nome}</h2>
               <p>Email: {usuario.email}</p>
-              <p>Endereço de Entrega: {usuario.enderecoEntrega}</p>
+              <p>Endereço de entrega: {usuario.enderecoEntrega}</p>
             </div>
           ))
         ) : (
@@ -308,5 +305,7 @@ function UsuariosPage({ usuarios }: { usuarios: UsuarioType[] }) {
   );
 }
 
-
 export default App;
+
+
+
