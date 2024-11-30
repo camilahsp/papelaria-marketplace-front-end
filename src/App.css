@@ -14,7 +14,6 @@ body {
   padding-top: 60px; /* Adiciona um espaçamento para compensar o cabeçalho fixo */
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 /* Contêiner do app para incluir o cabeçalho fixo e o conteúdo */
@@ -101,12 +100,19 @@ body {
   margin-top: 20px;
 }
 
+.cadastro-container h1{
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #d4a5a5;
 
+}
 
 /* Estilos para a página inicial */
 .home-container {
   text-align: center;
   margin-top: 50px;
+  color: #d4a5a5;
 }
 
 /* Estilos gerais para os formulários */
@@ -114,13 +120,18 @@ form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 400px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   background-color: #fff;
   padding: 70px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+form>div{
+  display: flex;
+  flex-direction: column;
 }
 
 input {
@@ -197,40 +208,41 @@ button[type="submit"]:hover {
 }
 
 /* Formulário de cadastro de produto */
-.cadastro-produto-container {
+.cadastro-produto-container,
+.cadastro-container{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: white;
   padding: 20px;
-  max-width: 600px;
-  width: 100%;
+  width: 800px;
   margin: 50px auto;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Centralizar o título "Produtos" */
-.cadastro-produto-container h1 {
+.cadastro-produto-container h1{
   text-align: center;
   font-size: 2rem;
   margin-bottom: 30px;
   color: #d4a5a5;
 }
 
-.cadastro-produto-container form {
+.cadastro-produto-container form{
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.cadastro-produto-container label {
+.cadastro-produto-container label,
+.cadastro-container{
   font-weight: bold;
 }
 
 .cadastro-produto-container input,
-.cadastro-produto-container textarea {
+.cadastro-produto-container textarea{
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -306,6 +318,7 @@ button[type="submit"]:hover {
   flex-wrap: wrap; /* Permite que os produtos que não cabem em uma linha se movam para a próxima linha */
   gap: 20px; /* Espaço entre os produtos */
   padding: 20px;
+ 
 }
 
 .produto-item {
@@ -315,6 +328,8 @@ button[type="submit"]:hover {
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 200px; /* Largura fixa para os itens de produto */
+  background-color: white;
+
 }
 
 .produto-item img {
@@ -324,10 +339,11 @@ button[type="submit"]:hover {
 
 .produto-item h2 {
   font-size: 1.2rem;
-  color: #333;
+  color: #000000;
 }
 
 .produto-item p {
   font-size: 1rem;
   color: #000000;
+
 }
