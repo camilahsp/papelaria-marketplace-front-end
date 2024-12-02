@@ -9,7 +9,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #f4f4f9; /* Cor do fundo da página */
-  color: #333;
+  color:#d4a5a5;
   line-height: 1.6;
   padding-top: 60px; /* Adiciona um espaçamento para compensar o cabeçalho fixo */
   display: flex;
@@ -198,6 +198,10 @@ button[type="submit"]:hover {
   transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
 }
 
+.produto-item:hover {
+  transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+}
+
 .usuario-item h2 {
   font-size: 1.3rem;
   color: #333;
@@ -251,7 +255,7 @@ button[type="submit"]:hover {
 
 /* Estilos para o botão de cadastro de produto */
 .cadastro-produto-btn {
-  padding: 12px;
+  padding: 10px 30px;
   background-color: #d4a5a5; /* Mesma cor que o botão de cadastro de usuário */
   border: none;
   color: white;
@@ -329,6 +333,7 @@ button[type="submit"]:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 200px; /* Largura fixa para os itens de produto */
   background-color: white;
+  transition: transform 0.3s ease;
 
 }
 

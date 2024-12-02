@@ -166,10 +166,7 @@ function CadastroPage() {
 function CadastroProdutoPage() {
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
-  const [numeroDePaginas, setNumeroDePaginas] = useState(0);
-  const [editora, setEditora] = useState('');
   const [imagem, setImagem] = useState('');
-  const [descricao, setDescricao] = useState('');
   const [genero, setGenero] = useState('');
   const [preco, setPreco] = useState(0);
   const navigate = useNavigate();
@@ -177,7 +174,7 @@ function CadastroProdutoPage() {
   const handleCadastroProduto = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const produto = { titulo, autor, numeroDePaginas, editora, imagem, descricao, genero, preco };
+    const produto = { titulo, autor, imagem, genero, preco };
 
     const response = await fetch('http://localhost:8000/produtos', {
       method: 'POST',
@@ -220,26 +217,6 @@ function CadastroProdutoPage() {
           />
         </div>
         <div>
-          <label htmlFor="numeroDePaginas">Número de Páginas:</label>
-          <input
-            type="number"
-            id="numeroDePaginas"
-            value={numeroDePaginas}
-            onChange={(e) => setNumeroDePaginas(Number(e.target.value))}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="editora">Editora:</label>
-          <input
-            type="text"
-            id="editora"
-            value={editora}
-            onChange={(e) => setEditora(e.target.value)}
-            required
-          />
-        </div>
-        <div>
           <label htmlFor="imagem">Imagem do Livro (URL):</label>
           <input
             type="text"
@@ -249,15 +226,7 @@ function CadastroProdutoPage() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="descricao">Descrição:</label>
-          <textarea
-            id="descricao"
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-            required
-          />
-        </div>
+       
         <div>
           <label htmlFor="genero">Gênero:</label>
           <input
@@ -271,10 +240,10 @@ function CadastroProdutoPage() {
         <div>
           <label htmlFor="preco">Preço:</label>
           <input
-            type="number"
+            type="text"
             id="preco"
             value={preco}
-            onChange={(e) => setPreco(Number(e.target.value))}
+            onChange={(e) => setPreco(e.target.value)}
             required
           />
         </div>
