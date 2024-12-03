@@ -180,19 +180,23 @@ button[type="submit"]:hover {
 .usuarios-list {
   display: flex; /* Flexbox para exibir os usuários na horizontal */
   flex-wrap: wrap; /* Permite que os usuários que não cabem em uma linha se movam para a próxima linha */
-  gap: 20px; /* Espaço entre os itens */
+  gap: 60px; /* Espaço entre os itens */
   justify-content: center; /* Centraliza os itens horizontalmente */
+  padding: 80px;
 }
+
+
 
 .usuario-item {
   background-color: #fff;
-  padding: 15px;
+  padding: 30px; /* Aumentei o padding para mais espaço interno */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 250px; /* Largura fixa para cada item de usuário */
-  text-align: center; /* Centraliza o conteúdo dentro do item */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Aumentei a intensidade da sombra */
+  width: 350px; /* Aumentei a largura da caixa */
+  text-align: center;
   transition: transform 0.3s ease;
 }
+
 
 .usuario-item:hover {
   transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
@@ -209,6 +213,7 @@ button[type="submit"]:hover {
 
 .usuario-item p {
   color: #555;
+  text-align: left;
 }
 
 /* Formulário de cadastro de produto */
@@ -356,4 +361,46 @@ button[type="submit"]:hover {
   color: #000000;
   text-align: left;
 
+}
+
+/* Estilos para a logo */
+.logo-container {
+  display: flex;
+  justify-content: flex-start;  /* Alinha a logo no canto esquerdo */
+  align-items: center;  /* Alinha a logo verticalmente */
+  flex: 1;
+}
+
+.logo {
+  width: 100px; /* Ajuste o tamanho conforme necessário */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 50%; /* Torna a logo arredondada */
+}
+
+/* Modifiquei o cabeçalho para garantir que ele não mude de tamanho */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
+  height: 80px; /* Garantir que o cabeçalho tenha a mesma altura */
+}
+
+/* Navegação do menu */
+.navigation ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.navigation ul li {
+  margin-right: 20px;
+}
+
+.button-container {
+  display: flex;
+}
+
+button {
+  margin-left: 10px;
 }

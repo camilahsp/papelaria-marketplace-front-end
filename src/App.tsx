@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
@@ -39,6 +40,10 @@ function App() {
   return (
     <div className="app-container">
       <header className="site-header">
+        {/* Logo aqui */}
+        <div className="logo-container">
+          <img src= "logo.png" alt="Logo" className="logo" />
+        </div>
         <nav className="navigation">
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -57,8 +62,8 @@ function App() {
 
       <div className="content-container">
         <Routes>
-          <Route path="/" element={<HomePage produtos={produtos} />} /> {/* Passando a prop produtos */}
-         <Route path="/usuarios" element={<UsuariosPage usuarios={usuarios} />} />
+          <Route path="/" element={<HomePage produtos={produtos} />} />
+          <Route path="/usuarios" element={<UsuariosPage usuarios={usuarios} />} />
           <Route path="/cadastro" element={<CadastroPage />} />
           <Route path="/cadastro-produto" element={<CadastroProdutoPage />} />
         </Routes>
@@ -91,7 +96,6 @@ function HomePage({ produtos }: { produtos: ProdutoType[] }) {
     </div>
   );
 }
-
 
 function CadastroPage() {
   const [nome, setNome] = useState('');
@@ -226,7 +230,6 @@ function CadastroProdutoPage() {
             required
           />
         </div>
-       
         <div>
           <label htmlFor="genero">Gênero:</label>
           <input
@@ -275,6 +278,4 @@ function UsuariosPage({ usuarios }: { usuarios: UsuarioType[] }) {
 }
 
 export default App;
-
-
 
