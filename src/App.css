@@ -316,25 +316,28 @@ button[type="submit"]:hover {
   }
 }
 
-/* Modificação para os produtos ficarem na horizontal */
+
+
+/* Contêiner dos produtos */
 .produtos-list {
   display: flex; /* Flexbox para exibir os produtos na horizontal */
-  flex-wrap: wrap; /* Permite que os produtos que não cabem em uma linha se movam para a próxima linha */
-  gap: 20px; /* Espaço entre os produtos */
-  padding: 20px;
- 
+  flex-wrap: wrap; /* Permite que os produtos se movam para a próxima linha */
+  gap: 60px; /* Espaço entre os produtos */
+  padding: 80px;
+  justify-content: center; /* Centraliza os produtos na linha */
 }
 
+
+/* Cada item de produto */
 .produto-item {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 20px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px; /* Largura fixa para os itens de produto */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: calc(20% - 16px); /* 20% de largura para 5 itens por linha com espaçamento */
   background-color: white;
   transition: transform 0.3s ease;
-
 }
 
 .produto-item img {
@@ -345,10 +348,12 @@ button[type="submit"]:hover {
 .produto-item h2 {
   font-size: 1.2rem;
   color: #000000;
+  text-align: center;
 }
 
 .produto-item p {
   font-size: 1rem;
   color: #000000;
+  text-align: left;
 
 }
