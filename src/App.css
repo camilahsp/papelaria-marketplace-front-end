@@ -372,9 +372,9 @@ button[type="submit"]:hover {
 }
 
 .logo {
-  width: 100px; /* Ajuste o tamanho conforme necessário */
+  width: 200px; /* Ajuste o tamanho conforme necessário */
   height: auto; /* Mantém a proporção da imagem */
-  border-radius: 50%; /* Torna a logo arredondada */
+
 }
 
 /* Modifiquei o cabeçalho para garantir que ele não mude de tamanho */
