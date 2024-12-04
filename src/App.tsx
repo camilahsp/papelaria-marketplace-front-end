@@ -22,7 +22,7 @@ type ProdutoType = {
   imagem: string;
   descricao: string;
   genero: string;
-  preco: number;
+  preco: string;
 };
 
 
@@ -267,7 +267,7 @@ function CadastroProdutoPage() {
             type="text"
             id="preco"
             value={preco}
-            onChange={(e) => setPreco(e.target.value)}
+            onChange={(e) => setPreco(Number(e.target.value))}
             required
           />
         </div>
