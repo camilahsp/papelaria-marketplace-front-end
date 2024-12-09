@@ -16,10 +16,7 @@ type ProdutoType = {
   id: number; // ID único do produto
   titulo: string; // Título do livro
   autor: string; // Autor do livro
-  numeroDePaginas: number; // Número de páginas do livro
-  editora: string; // Editora do livro
   imagem: string; // URL da imagem do livro
-  descricao: string; // Descrição do livro
   genero: string; // Gênero do livro
   preco: string; // Preço do livro (em formato string, pode ser convertido)
 };
