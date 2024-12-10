@@ -30,12 +30,12 @@ function App() {
   // Usando useEffect para buscar os dados da API quando o componente for montado
   useEffect(() => {
     // Fazendo a requisição para obter os usuários da API
-    fetch('https://one022a-marketplace2.onrender.com/usuarios')
+    fetch('https://papelaria-marketplace-back-end.onrender.com/usuarios')
       .then((resposta) => resposta.json()) // Convertendo a resposta para JSON
       .then((dados) => setUsuarios(dados)); // Atualizando o estado com os dados dos usuários
 
     // Fazendo a requisição para obter os produtos da API
-    fetch('https://one022a-marketplace2.onrender.com/produtos')
+    fetch('https://papelaria-marketplace-back-end.onrender.com/produtos')
       .then((resposta) => resposta.json()) // Convertendo a resposta para JSON
       .then((dados) => setProdutos(dados)); // Atualizando o estado com os dados dos produtos
   }, []); // O array vazio faz com que o efeito seja executado apenas uma vez após a montagem
@@ -119,7 +119,7 @@ function CadastroPage() {
     const usuario = { nome, email, enderecoEntrega: endereco };
 
     // Enviando os dados para a API
-    const response = await fetch('https://one022a-marketplace2.onrender.com/usuarios', {
+    const response = await fetch('https://papelaria-marketplace-back-end.onrender.com/usuarios', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -196,7 +196,7 @@ function CadastroProdutoPage() {
     const produto = { titulo, autor, imagem, genero, preco };
 
     // Enviando os dados para a API
-    const response = await fetch('https://one022a-marketplace2.onrender.com/produtos', {
+    const response = await fetch('https://papelaria-marketplace-back-end.onrender.com/produtos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
