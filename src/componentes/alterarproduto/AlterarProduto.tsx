@@ -97,24 +97,28 @@ export default AlterarProduto;
 */ 
 
 import { useParams } from "react-router-dom";
-import { ChangeEvent, FormEvent, useState , useEffect } from "react";
+import {FormEvent, useState , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function AlterarProduto() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [nome, setNome] = useState("");
+    const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [preco, setPreco] = useState("");
+    const [genero, setGenero] = useState("");
+    const [autor, setAutor] = useState("");
     const [imagem, setImagem] = useState("");
 
     useEffect(() => {
         fetch(`http://localhost:8000/produtos/${id}`)
             .then(resposta => resposta.json())
             .then(dados => {
-                setNome(dados.nome);
+                setTitulo(dados.titulo);
                 setDescricao(dados.descricao);
                 setPreco(dados.preco);
+                setGenero(dados.genero);
+                setAutor(dados.autor);
                 setImagem(dados.imagem);
             })
             .catch(() => {
@@ -131,9 +135,11 @@ function AlterarProduto() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    nome: nome,
+                    titulo: titulo,
                     descricao: descricao,
                     preco: preco,
+                    genero: genero,
+                    autor: autor,
                     imagem: imagem
                 })
             });
@@ -158,8 +164,8 @@ function AlterarProduto() {
                     <input placeholder="Id" type="text" name="id" id="id" value={id} readOnly />
                 </div>
                 <div>
-                    <label htmlFor="nome">Nome</label>
-                    <input placeholder="Nome" type="text" name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                    <label htmlFor="titulo">Titulo</label>
+                    <input placeholder="Titulo" type="text" name="titulo" id="titulo" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
                 </div>
                 <div>
                     <label htmlFor="descricao">Descrição</label>
@@ -168,6 +174,14 @@ function AlterarProduto() {
                 <div>
                     <label htmlFor="preco">Preço</label>
                     <input placeholder="Preço" type="text" name="preco" id="preco" value={preco} onChange={(e) => setPreco(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="genero">Gênero</label>
+                    <input placeholder="Genero" type="text" name="genero" id="genero" value={genero} onChange={(e) => setGenero(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="autor">Autor</label>
+                    <input placeholder="Autor" type="text" name="autor" id="autor" value={autor} onChange={(e) => setAutor(e.target.value)} />
                 </div>
                 <div>
                     <label htmlFor="imagem">URL Imagem</label>
