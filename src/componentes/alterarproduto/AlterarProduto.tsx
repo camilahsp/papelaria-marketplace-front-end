@@ -99,6 +99,7 @@ export default AlterarProduto;
 import { useParams } from "react-router-dom";
 import {FormEvent, useState , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function AlterarProduto() {
     const { id } = useParams();
@@ -157,6 +158,15 @@ function AlterarProduto() {
 
     return (
         <>
+              <header className="site-header">
+                <nav className="navigation">
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/cadastro-produto">Cadastro de Produto</Link></li>
+                </ul>
+                </nav>
+             </header>
+             
             <h1>Alterar Produto</h1>
             <form onSubmit={handleForm}>
                 <div>

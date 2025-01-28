@@ -1,7 +1,6 @@
 /* Estilos gerais */
 * {
-  margin: 0;
-  padding: 0;
+
   box-sizing: border-box;
 }
 
@@ -11,7 +10,7 @@ body {
   background-color: #f4f4f9; /* Cor do fundo da página */
   color:#d4a5a5;
   line-height: 1.6;
-  padding-top: 60px; /* Adiciona um espaçamento para compensar o cabeçalho fixo */
+  /* padding-top: 60px; Adiciona um espaçamento para compensar o cabeçalho fixo */
   display: flex;
   flex-direction: column;
 }
@@ -29,9 +28,6 @@ body {
   background-color: #fff;
   color: #333;
   padding: 15px 0;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   z-index: 1000;
   border-bottom: 1px solid #e0e0e0;
@@ -157,64 +153,20 @@ button[type="submit"] {
   cursor: pointer;
   border-radius: 25px;
   transition: all 0.3s ease;
+  text-align: center;
 }
 
 button[type="submit"]:hover {
   background-color: #b88b8b;
 }
 
-/* Estilos para a página de usuários */
-.usuarios-container {
-  margin-top: 50px;
 
-}
-
-/* Centralizar o título "Usuários" */
-.usuarios-container h1 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #d4a5a5;
-}
-
-.usuarios-list {
-  display: flex; /* Flexbox para exibir os usuários na horizontal */
-  flex-wrap: wrap; /* Permite que os usuários que não cabem em uma linha se movam para a próxima linha */
-  gap: 60px; /* Espaço entre os itens */
-  justify-content: center; /* Centraliza os itens horizontalmente */
-  padding: 80px;
-}
-
-
-
-.usuario-item {
-  background-color: #fff;
-  padding: 30px; /* Aumentei o padding para mais espaço interno */
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Aumentei a intensidade da sombra */
-  width: 350px; /* Aumentei a largura da caixa */
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-
-.usuario-item:hover {
-  transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
-}
 
 .produto-item:hover {
   transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
 }
 
-.usuario-item h2 {
-  font-size: 1.3rem;
-  color: #333;
-}
 
-.usuario-item p {
-  color: #555;
-  text-align: left;
-}
 
 /* Formulário de cadastro de produto */
 .cadastro-produto-container,
@@ -404,3 +356,10 @@ button[type="submit"]:hover {
 button {
   margin-left: 10px;
 }
+
+.imagem-produto-reduzida{
+  width: 50%;
+  height: auto;
+  text-align: center;
+}
+

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './App.css';
-import AlterarProduto from './componentes/alterarproduto/AlterarProduto';
+
 
 type ProdutoType = {
   id: number;
@@ -58,17 +58,12 @@ function App() {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/cadastro-produto">Cadastro de Produto</Link></li>
-
           </ul>
         </nav>
       </header>
 
       <div className="content-container">
-        <Routes>
-          <Route path="/" element={<HomePage produtos={produtos} handleExcluir={handleExcluir} />} />
-          <Route path="/cadastro-produto" element={<CadastroProdutoPage />} />
-          <Route path="/alterar-produto/:id" element={<AlterarProduto />} />
-        </Routes>
+            <HomePage produtos={produtos} handleExcluir={handleExcluir}/>
       </div>
     </div>
   );
@@ -77,7 +72,7 @@ function App() {
 function HomePage({ produtos, handleExcluir }: { produtos: ProdutoType[], handleExcluir: (id: number) => void }) {
   return (
     <div className="produtos-container">
-      <h1 className="titulo-produto">Produtos</h1>
+      <h1>Produtos</h1>
       <div className="produtos-list">
         {produtos.map((produto) => (
           <div key={produto.id} className="produto-item">
@@ -89,9 +84,9 @@ function HomePage({ produtos, handleExcluir }: { produtos: ProdutoType[], handle
             <p className="produto-descricao">{produto.descricao}</p>
             <p className="produto-genero">{produto.genero}</p>
             <p className="produto-autor">{produto.autor}</p>
-            <button className="botao-comprar">Comprar</button>
+            <button>Comprar</button>
             <button onClick={() => handleExcluir(produto.id)}>Excluir</button>
-            <Link to={`/alterar-produto/${produto.id}`}>Alterar</Link>
+            <button><Link to={`/alterar-produto/${produto.id}`}>Alterar</Link> </button>
           </div>
         ))}
       </div>

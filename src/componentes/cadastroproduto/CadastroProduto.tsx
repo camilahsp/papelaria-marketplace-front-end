@@ -82,7 +82,9 @@ export default CadastroProduto
 */ 
 
 import { ChangeEvent, FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+
 
 function CadastroProduto() {
     const navigate = useNavigate();
@@ -93,6 +95,7 @@ function CadastroProduto() {
     const [genero, setGenero] = useState("");
     const [autor, setAutor] = useState("");
     const [imagem, setImagem] = useState("");
+
 
     async function handleForm(event: FormEvent) {
         event.preventDefault();
@@ -153,28 +156,46 @@ function CadastroProduto() {
     }
 
     return (
-        <>
+
+
+        <>      
+        <header className="site-header">
+        <nav className="navigation">
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/cadastro-produto">Cadastro de Produto</Link></li>
+          </ul>
+        </nav>
+      </header>
+
             <h1>Meu Componente de Cadastro de Produtos</h1>
             <form onSubmit={handleForm}>
                 <div>
+                <label htmlFor="id">Id</label>
                     <input placeholder="Id" type="text" name="id" id="id" onChange={handleId} />
                 </div>
                 <div>
+                <label htmlFor="titulo">Título</label>
                     <input placeholder="Titulo" type="text" name="titulo" id="titulo" onChange={handleTitulo} />
                 </div>
                 <div>
+                <label htmlFor="descricao">Descrição</label>
                     <input placeholder="Descrição" type="text" name="descricao" id="descricao" onChange={handleDescricao} />
                 </div>
                 <div>
+                <label htmlFor="preco">Preço</label>
                     <input placeholder="Preço" type="text" name="preco" id="preco" onChange={handlePreco} />
                 </div>
                 <div>
+                <label htmlFor="genero">Gênero</label>
                     <input placeholder="Genero" type="text" name="genero" id="genero" onChange={handleGenero} />
                 </div>
                 <div>
+                <label htmlFor="autor">Autor</label>
                     <input placeholder="Autor" type="text" name="autor" id="autor" onChange={handleAutor} />
                 </div>
                 <div>
+                <label htmlFor="imagem">Imagem</label>
                     <input placeholder="URL Imagem" type="text" name="imagem" id="imagem" onChange={handleImagem} />
                 </div>
                 <input type="submit" value="Cadastrar" />
