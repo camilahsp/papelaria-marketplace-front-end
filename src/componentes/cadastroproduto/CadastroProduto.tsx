@@ -168,7 +168,7 @@ function CadastroProduto() {
         </nav>
       </header>
 
-            <h1>Meu Componente de Cadastro de Produtos</h1>
+            <h1>Cadastro de Produtos</h1>
             <form onSubmit={handleForm}>
                 <div>
                 <label htmlFor="id">Id</label>

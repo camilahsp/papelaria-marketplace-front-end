@@ -80,11 +80,10 @@ function HomePage({ produtos, handleExcluir }: { produtos: ProdutoType[], handle
             <div className="container-imagem">
               <img src={produto.imagem} alt="Imagem do produto" />
             </div>
-            <p className="produto-preco">{produto.preco}</p>
+            <h3 className="produto-preco">{produto.preco}</h3>
             <p className="produto-descricao">{produto.descricao}</p>
             <p className="produto-genero">{produto.genero}</p>
             <p className="produto-autor">{produto.autor}</p>
-            <button>Comprar</button>
             <button onClick={() => handleExcluir(produto.id)}>Excluir</button>
             <button><Link to={`/alterar-produto/${produto.id}`}>Alterar</Link> </button>
           </div>

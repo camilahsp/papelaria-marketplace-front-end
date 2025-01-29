@@ -18,11 +18,11 @@
 
 a {
   font-weight: 500;
-  color: #000000;
+  color: #ffffff;
   text-decoration: inherit;
 }
 a:hover {
-  color: #000000;
+  color: #ffffff;
 }
 
 body {
@@ -49,6 +49,7 @@ button {
   background-color:#d4a5a5;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: white;
 }
 button:hover {
   border-color: #646cff;
