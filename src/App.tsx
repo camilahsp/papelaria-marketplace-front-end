@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
-        const response = await fetch('http://localhost:8000/produtos');
+        const response = await fetch('https://papelaria-marketplace-back-end.onrender.com/produtos');
         if (!response.ok) {
           throw new Error('Erro ao buscar produtos');
         }
@@ -37,7 +37,7 @@ function App() {
   const handleExcluir = async (id: number) => {
     alert(`Excluir o produto com id ${id}`);
     try {
-      const response = await fetch(`http://localhost:8000/produtos/${id}`, {
+      const response = await fetch(`https://papelaria-marketplace-back-end.onrender.com/produtos/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -109,7 +109,7 @@ function CadastroProdutoPage() {
     const produto = { titulo, genero, autor, preco, descricao, imagem };
 
     try {
-      const response = await fetch('http://localhost:8000/produtos', {
+      const response = await fetch('https://papelaria-marketplace-back-end.onrender.com/produtos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
