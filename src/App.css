@@ -335,7 +335,7 @@ button[type="submit"]:hover {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   height: 80px; /* Garantir que o cabeçalho tenha a mesma altura */
 }
 
